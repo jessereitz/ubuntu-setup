@@ -1,5 +1,19 @@
 #! /usr/bin/env bash
 
+########################
+#                      #
+#    init-ubuntu.sh    #
+#                      #
+########################
+
+##########################################################
+#                                                        #
+# This script initializes all my favorite and most used  #
+# programs and settings in Ubuntu. This script should be #
+# run on each new installation.                          #
+#                                                        #
+##########################################################
+
 # Update and upgrade packages
 echo "Updating repositories and package lists."
 add-apt-repository main
