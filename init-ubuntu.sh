@@ -39,7 +39,7 @@ apt install --assume-yes gnome-tweak-tool
 su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM' $SUDO_USER
 su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true' $SUDO_USER
 su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 24' $SUDO_USER
-su -c 'gsettings set org.gnome.desktop.wm.preferences button-layout "close,maximize,minimize:' $SUDO_USER
+su -c 'gsettings set org.gnome.desktop.wm.preferences button-layout "close,maximize,minimize:"' $SUDO_USER
 BACKGROUND_IMG_URL="http://i.imgur.com/SJrKG.jpg"
 echo "Downloading background image from ${BACKGROUND_IMG_URL}"
 BACKGROUND_LOCAL_PATH='/usr/share/backgrounds/default-background.jpg'
