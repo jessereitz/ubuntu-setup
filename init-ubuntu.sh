@@ -22,8 +22,8 @@ git config --global user.email "jessereitz1@gmail.com"
 # Install Gnome-Tweaks and set up Gnome
 echo -e "\n\nInstalling Gnome-Tweaks. Setting up Gnome preferences."
 apt install --assume-yes gnome-tweak-tool
-su -c $SUDO_USER 'gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM'
-su -c $SUDO_USER 'gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true'
+su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM' $SUDO_USER
+su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true' $SUDO_USER
 
 
 # Install text editors and their configurations
