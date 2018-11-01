@@ -16,8 +16,11 @@ apt install --assume-yes git
 git config --global user.name "Jesse Reitz"
 git config --global user.email "jessereitz1@gmail.com"
 
-# Install Gnome-Tweaks
+# Install Gnome-Tweaks and set up Gnome
 apt install --assume-yes gnome-tweak-tool
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
+gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+
 
 # Install text editors and their configurations
 apt install --assume-yes vim
