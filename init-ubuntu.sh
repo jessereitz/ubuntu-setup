@@ -40,6 +40,14 @@ su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTO
 su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true' $SUDO_USER
 su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 24' $SUDO_USER
 su -c 'gsettings set org.gnome.desktop.wm.preferences button-layout "close,maximize,minimize:' $SUDO_USER
+BACKGROUND_IMG_URL="http://i.imgur.com/SJrKG.jpg"
+echo "Downloading background image from ${BACKGROUND_IMG_URL}"
+BACKGROUND_LOCAL_PATH='/usr/share/backgrounds/default-background.jpg'
+wget -O "${BACKGROUND_LOCAL_PATH}" "${BACKGROUND_IMG_URL}"
+BACKGROUND_IMG_URI="file://${BACKGROUND_LOCAL_PATH}"
+echo "Download complete. Changing background."
+su -c "gsettings set org.gnome.desktop.background picture-options 'centered'" $SUDO_USER
+su -c "gsettings set org.gnome.desktop.background picture-uri $BACKGROUND_IMG_URI" $SUDO_USER
 
 # Install text editors and their configurations
 echo -e "\n\nInstalling Vim, vimrc."
@@ -48,6 +56,9 @@ git clone https://github.com/jessereitz/vimrc.git ~/.vim
 echo -e "\n\nInstalling Atom."
 snap install --classic atom
 apm install --assume-yes sync-settings
+
+# Install VirtualBox
+apt install --assume-yes virtualbox-qt
 
 # Install and set up Python and Python packages
 echo -e "\n\nInstalling python3-pip, virtualenv."
