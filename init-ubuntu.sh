@@ -8,7 +8,7 @@ add-apt-repository multiverse
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 apt update
-apt --asume-yes upgrade
+apt --assume-yes upgrade
 sudo apt-get -y install google-chrome-stable
 
 # Install git
@@ -20,10 +20,10 @@ git config --global user.email "jessereitz1@gmail.com"
 apt install --assume-yes gnome-tweak-tool
 
 # Install text editors and their configurations
-apt install --asume-yes vim
+apt install --assume-yes vim
 git clone https://github.com/jessereitz/vimrc.git ~/.vim
 snap install --classic atom
-apm install sync-settings
+apm install --assume-yes sync-settings
 
 # Install and set up Python and Python packages
 apt install --assume-yes python3-pip
