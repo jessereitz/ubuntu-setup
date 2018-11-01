@@ -27,6 +27,10 @@ echo -e "\n\nUpgrading packages."
 apt --assume-yes upgrade
 sudo apt-get -y install google-chrome-stable
 
+# Install Glances
+echo -e "\n\nInstalling Glances"
+apt install --assume-yes glances
+
 # Install git
 echo -e "\n\nInstalling Git."
 apt install --assume-yes git
