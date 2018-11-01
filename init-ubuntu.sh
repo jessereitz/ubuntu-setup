@@ -22,7 +22,6 @@ apt install --assume-yes gnome-tweak-tool
 # Install text editors and their configurations
 apt install --asume-yes vim
 git clone https://github.com/jessereitz/vimrc.git ~/.vim
-mv ~/vimrc ~/.vim
 snap install --classic atom
 apm install sync-settings
 
