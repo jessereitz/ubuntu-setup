@@ -21,7 +21,7 @@ apt install gnome-tweak-tool
 
 # Install text editors and their configurations
 apt install vim
-git clone https://github.com/jessereitz/vimrc.git ~/
+git clone https://github.com/jessereitz/vimrc.git ~/.vim
 mv ~/vimrc ~/.vim
 snap install --classic atom
 apm install sync-settings
@@ -33,6 +33,8 @@ pip3 install virtualenv
 # Install Node
 apt install nodejs
 apt install npm
+npm install -g npm@latest
+npm cache clean --force
 
 # Install Node packages
 npm install -g http-server eslint sass
