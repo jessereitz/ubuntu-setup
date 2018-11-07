@@ -58,7 +58,7 @@ echo -e "\n\nInstalling Vim, vimrc."
 apt install --assume-yes vim
 git clone https://github.com/jessereitz/vimrc.git ~/.vim
 echo -e "\n\nInstalling Atom."
-snap install --classic atom
+su -c 'snap install --classic atom' $SUDO_USER
 apm install --assume-yes sync-settings
 
 # Install VirtualBox
