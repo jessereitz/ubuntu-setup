@@ -65,7 +65,7 @@ su -c "gsettings set org.gnome.desktop.background picture-uri $BACKGROUND_IMG_UR
 
 # Install text editors and their configurations
 echo -e "\n\nInstalling Vim, vimrc."
-apt install --assume-yes vim
+apt install --assume-yes vim-gtk
 git clone https://github.com/jessereitz/vimrc.git ~/.vim
 echo -e "\n\nInstalling Atom."
 su -c 'snap install --classic atom' $SUDO_USER
