@@ -28,21 +28,11 @@ apt --assume-yes upgrade
 echo -e "\n\nInstalling Glances"
 apt install --assume-yes glances
 
-# Install git
-echo -e "\n\nInstalling Git."
-apt install --assume-yes git
-git config --global user.name "Jesse Reitz"
-git config --global user.email "jessereitz1@gmail.com"
-
 # Install net-tools and speedtest
 echo -e "\n\nInstalling Net Tools"
 apt install --assume-yes net-tools
 echo -e "\n\nInstalling Speed Test"
 apt install --assume-yes speedtest-cli
-
-# Install ssh-server
-echo -e "\n\nInstalling SSH server"
-apt install --assume-yes openssh-server
 
 # Install text editors and their configurations
 echo -e "\n\nInstalling Vim, vimrc."
