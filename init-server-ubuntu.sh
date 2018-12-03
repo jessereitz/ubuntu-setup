@@ -38,6 +38,7 @@ apt install --assume-yes speedtest-cli
 echo -e "\n\nInstalling Vim, vimrc."
 apt install --assume-yes vim-gtk
 git clone https://github.com/jessereitz/vimrc.git ~/.vim
+vim +PlugInstall +qall
 
 # Install and set up Python and Python packages
 echo -e "\n\nInstalling python3-pip, virtualenv."

@@ -67,6 +67,7 @@ su -c "gsettings set org.gnome.desktop.background picture-uri $BACKGROUND_IMG_UR
 echo -e "\n\nInstalling Vim, vimrc."
 apt install --assume-yes vim-gtk
 git clone https://github.com/jessereitz/vimrc.git ~/.vim
+vim +PlugInstall +qall
 echo -e "\n\nInstalling Atom."
 su -c 'snap install --classic atom' $SUDO_USER
 apm install --assume-yes sync-settings
