@@ -1,3 +1,0 @@
-cp ~/ubuntu-setup/init-ubuntu.sh ~/init-ubuntu.sh
-chmod 755 ~/init-ubuntu.sh
-~/init-ubuntu.sh

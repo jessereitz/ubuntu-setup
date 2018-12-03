@@ -91,9 +91,5 @@ yes | npm cache clean --force
 echo -e "\n\nInstalling Node packages: http-server, eslint, sass, nodemon"
 yes | npm install -g http-server eslint sass nodemon
 
-# Remove this script
-echo -e "\n\nRemoving this setup script..."
-rm ~/init-ubuntu.sh
-
 echo -e "\n\nAll packages installed. Don't forget to set up Atom Sync-Settings."
 
