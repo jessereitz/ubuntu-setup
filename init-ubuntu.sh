@@ -70,6 +70,7 @@ git clone https://github.com/jessereitz/vimrc.git ~/.vim
 vim +PlugInstall +qall
 echo -e "\n\nInstalling Atom."
 su -c 'snap install --classic atom' $SUDO_USER
+sudo chmod -R 'whoami' ~/.atom
 apm install --assume-yes sync-settings
 
 # Install VirtualBox
