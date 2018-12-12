@@ -37,9 +37,11 @@ apt install --assume-yes git
 git config --global user.name "Jesse Reitz"
 git config --global user.email "jessereitz1@gmail.com"
 
-# Install net-tools and speedtest
+# Install net-tools, curl and speedtest
 echo -e "\n\nInstalling Net Tools"
 apt install --assume-yes net-tools
+echo -e "\n\nInstalling Curl"
+apt install --assume-yes curl
 echo -e "\n\nInstalling Speed Test"
 apt install --assume-yes speedtest-cli
 
