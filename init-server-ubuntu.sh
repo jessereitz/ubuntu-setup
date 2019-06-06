@@ -24,6 +24,9 @@ apt --assume-yes update
 echo -e "\n\nUpgrading packages."
 apt --assume-yes upgrade
 
+echo -e "\n\nInstalling Unattended Upgrades."
+apt install --assume-yes unattended-upgrades
+
 # Install Glances
 echo -e "\n\nInstalling Glances"
 apt install --assume-yes glances
