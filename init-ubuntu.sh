@@ -13,86 +13,73 @@
 # run on each new installation.                          #
 #                                                        #
 ##########################################################
+ALL_ARGS=${@: -1}
 
-# Update and upgrade packages
-echo "Updating repositories and package lists."
-add-apt-repository main
-add-apt-repository universe
-add-apt-repository multiverse
-# Chrome repository
-wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-apt --assume-yes update
-echo -e "\n\nUpgrading packages."
-apt --assume-yes upgrade
-sudo apt-get -y install google-chrome-stable
+echo -e "\n\n"
+echo "####################"
+echo "#                  #"
+echo "#   Ubuntu Setup   #"
+echo "#                  #"
+echo "####################"
+echo
 
-# Install Glances
-echo -e "\n\nInstalling Glances"
-apt install --assume-yes glances
+if [ "$EUID" -ne 0 ]; then
+    echo "We're doing some pretty heavy stuff here."
+    echo "Please run this shit as root."
+    exit
+fi
 
-# Install git
-echo -e "\n\nInstalling Git."
-apt install --assume-yes git
-git config --global user.name "Jesse Reitz"
-git config --global user.email "jessereitz1@gmail.com"
+echo "Setting up an Ubuntu desktop installation just how Jesse likes."
+echo
+echo "This script will install and configure my most commonly programs."
+echo "Keep in mind:"
+echo -e "\t* This is designed to work for Ubuntu and Ubuntu derivatives ONLY. Even then, things tend to break with new OS releases"
+echo -e "\t* This MUST be run as root from the 'ubuntu-setup' directory"
+echo -e "\t* This script expects the user to be 'jessereitz' and for the home directory to be '/home/jessereitz'. If you don't like that, too bad"
 
-# Install net-tools, curl and speedtest
-echo -e "\n\nInstalling Net Tools"
-apt install --assume-yes net-tools
-echo -e "\n\nInstalling Curl"
-apt install --assume-yes curl
-echo -e "\n\nInstalling Speed Test"
-apt install --assume-yes speedtest-cli
+echo
+last_arg=${@: -1}
+if [ "$last_arg" == "-y" ]; then
+    echo "You passed the '-y' flag. Assuming you would like to proceed."
+else
+    read -p "Would you like to proceed? [y|n]: " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        echo
+        echo "You have chosen not to continue. Evaluate your life decisions and come back when you're ready."
+        exit 1
+    fi
+fi
+echo
+echo 'You have chosen to continue. Get ready for awesome.'
+echo -e "\n\n"
 
-# Install ssh-server
-echo -e "\n\nInstalling SSH server"
-apt install --assume-yes openssh-server
+# # Add Chrome repository
+# echo "Adding Chrome repository for installation later."
+# wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+# echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 
-# Install Gnome-Tweaks and set up Gnome
-echo -e "\n\nInstalling Gnome-Tweaks. Setting up Gnome preferences."
-apt install --assume-yes gnome-tweak-tool
-su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM' $SUDO_USER
-su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true' $SUDO_USER
-su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 24' $SUDO_USER
-su -c 'gsettings set org.gnome.desktop.wm.preferences button-layout "close,maximize,minimize:"' $SUDO_USER
-BACKGROUND_IMG_URL="http://i.imgur.com/SJrKG.jpg"
-echo "Downloading background image from ${BACKGROUND_IMG_URL}"
-BACKGROUND_LOCAL_PATH='/usr/share/backgrounds/default-background.jpg'
-wget -O "${BACKGROUND_LOCAL_PATH}" "${BACKGROUND_IMG_URL}"
-BACKGROUND_IMG_URI="file://${BACKGROUND_LOCAL_PATH}"
-echo "Download complete. Changing background."
-su -c "gsettings set org.gnome.desktop.background picture-options 'centered'" $SUDO_USER
-su -c "gsettings set org.gnome.desktop.background picture-uri $BACKGROUND_IMG_URI" $SUDO_USER
+./init-server-ubuntu.sh $ALL_ARGS -y
 
-# Install text editors and their configurations
-echo -e "\n\nInstalling Vim, vimrc."
-apt install --assume-yes vim-gtk
-git clone https://github.com/jessereitz/vimrc.git ~/.vim
-vim +PlugInstall +qall
-echo -e "\n\nInstalling Atom."
-su -c 'snap install --classic atom' $SUDO_USER
-sudo chmod -R 'whoami' ~/.atom
-apm install --assume-yes sync-settings
+# sudo apt-get -y install google-chrome-stable
 
-# Install VirtualBox
-apt install --assume-yes virtualbox-qt
+# # Install git
+# echo -e "\n\nInstalling Git."
+# apt install --assume-yes git
+# git config --global user.name "Jesse Reitz"
+# git config --global user.email "jessereitz1@gmail.com"
 
-# Install and set up Python and Python packages
-echo -e "\n\nInstalling python3-pip, virtualenv."
-apt install --assume-yes python3-pip
-pip3 install virtualenv
+# # Install ssh-server
+# echo -e "\n\nInstalling SSH server"
+# apt install --assume-yes openssh-server
 
-# Install Node
-echo -e "\n\nInstalling Node, NPM."
-apt install --assume-yes nodejs npm
-yes | npm install -g npm@latest
-# Clear the npm cache to use updated npm version
-yes | npm cache clean --force
+# # Install Gnome-Tweaks and set up Gnome
+# echo -e "\n\nInstalling Gnome-Tweaks. Setting up Gnome preferences."
+# apt install --assume-yes gnome-tweak-tool
+# su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM' $SUDO_USER
+# su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true' $SUDO_USER
+# su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 24' $SUDO_USER
+# su -c 'gsettings set org.gnome.desktop.wm.preferences button-layout "close,maximize,minimize:"' $SUDO_USER
 
-# Install Node packages
-echo -e "\n\nInstalling Node packages: http-server, eslint, sass, nodemon"
-yes | npm install -g http-server eslint sass nodemon
-
-echo -e "\n\nAll packages installed. Don't forget to set up Atom Sync-Settings."
+# echo -e "\n\nAll packages installed."
 
