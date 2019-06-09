@@ -54,32 +54,26 @@ echo
 echo 'You have chosen to continue. Get ready for awesome.'
 echo -e "\n\n"
 
-# # Add Chrome repository
-# echo "Adding Chrome repository for installation later."
-# wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-# echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+# Add Chrome repository
+echo "Adding Chrome repository for installation later."
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 
 ./init-server-ubuntu.sh $ALL_ARGS -y
 
-# sudo apt-get -y install google-chrome-stable
+sudo apt-get -y install google-chrome-stable
 
-# # Install git
-# echo -e "\n\nInstalling Git."
-# apt install --assume-yes git
-# git config --global user.name "Jesse Reitz"
-# git config --global user.email "jessereitz1@gmail.com"
+# Install ssh-server
+echo -e "\n\nInstalling SSH server"
+apt install --assume-yes openssh-server
 
-# # Install ssh-server
-# echo -e "\n\nInstalling SSH server"
-# apt install --assume-yes openssh-server
+# Install Gnome-Tweaks and set up Gnome
+echo -e "\n\nInstalling Gnome-Tweaks. Setting up Gnome preferences."
+apt install --assume-yes gnome-tweak-tool
+su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM' $SUDO_USER
+su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true' $SUDO_USER
+su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 24' $SUDO_USER
+su -c 'gsettings set org.gnome.desktop.wm.preferences button-layout "close,maximize,minimize:"' $SUDO_USER
 
-# # Install Gnome-Tweaks and set up Gnome
-# echo -e "\n\nInstalling Gnome-Tweaks. Setting up Gnome preferences."
-# apt install --assume-yes gnome-tweak-tool
-# su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM' $SUDO_USER
-# su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true' $SUDO_USER
-# su -c 'gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 24' $SUDO_USER
-# su -c 'gsettings set org.gnome.desktop.wm.preferences button-layout "close,maximize,minimize:"' $SUDO_USER
-
-# echo -e "\n\nAll packages installed."
+echo -e "\n\nAll packages installed."
 

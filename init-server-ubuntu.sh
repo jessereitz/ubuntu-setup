@@ -69,59 +69,59 @@ if [ "$1" == "--auto-ssh-keys" ]; then
     echo "Done."
 fi
 
-# # Update and upgrade packages
-# echo "Updating repositories and package lists."
-# add-apt-repository main
-# add-apt-repository universe
-# add-apt-repository multiverse
-# apt --assume-yes update
-# echo -e "\n\nUpgrading packages."
-# apt --assume-yes upgrade
+# Update and upgrade packages
+echo "Updating repositories and package lists."
+add-apt-repository main
+add-apt-repository universe
+add-apt-repository multiverse
+apt --assume-yes update
+echo -e "\n\nUpgrading packages."
+apt --assume-yes upgrade
 
-# # Install git
-# echo -e "\n\nInstalling and configuring Git. It should already be on here but, y'know."
-# apt install --assume-yes git
-# git config --global user.name "Jesse Reitz"
-# git config --global user.email "jessereitz1@gmail.com"
+# Install git
+echo -e "\n\nInstalling and configuring Git. It should already be on here but, y'know."
+apt install --assume-yes git
+git config --global user.name "Jesse Reitz"
+git config --global user.email "jessereitz1@gmail.com"
 
-# echo -e "\n\nInstalling Unattended Upgrades."
-# apt install --assume-yes unattended-upgrades
+echo -e "\n\nInstalling Unattended Upgrades."
+apt install --assume-yes unattended-upgrades
 
-# # Install Glances
-# echo -e "\n\nInstalling Glances"
-# apt install --assume-yes glances
+# Install Glances
+echo -e "\n\nInstalling Glances"
+apt install --assume-yes glances
 
-# # Install net-tools, curl,  and speedtest
-# echo -e "\n\nInstalling Net Tools"
-# apt install --assume-yes net-tools
-# echo -e "\n\nInstalling Curl"
-# apt install --assume-yes curl
-# echo -e "\n\nInstalling Speed Test"
-# apt install --assume-yes speedtest-cli
+# Install net-tools, curl,  and speedtest
+echo -e "\n\nInstalling Net Tools"
+apt install --assume-yes net-tools
+echo -e "\n\nInstalling Curl"
+apt install --assume-yes curl
+echo -e "\n\nInstalling Speed Test"
+apt install --assume-yes speedtest-cli
 
-# # Install text editors and their configurations
-# echo -e "\n\nInstalling Vim, vimrc."
-# apt install --assume-yes vim-gtk
-# git clone https://github.com/jessereitz/vimrc.git /home/jessereitz/.vim
-# chown -R jessereitz:jessereitz /home/jessereitz/vim
-# vim +PlugInstall +qall
+# Install text editors and their configurations
+echo -e "\n\nInstalling Vim, vimrc."
+apt install --assume-yes vim-gtk
+git clone https://github.com/jessereitz/vimrc.git /home/jessereitz/.vim
+chown -R jessereitz:jessereitz /home/jessereitz/vim
+vim +PlugInstall +qall
 
-# # Install and set up Python and Python packages
-# echo -e "\n\nInstalling python3-pip, virtualenv."
-# apt install --assume-yes python3-pip
-# pip3 install virtualenv
+# Install and set up Python and Python packages
+echo -e "\n\nInstalling python3-pip, virtualenv."
+apt install --assume-yes python3-pip
+pip3 install virtualenv
 
-# # Install Node
-# echo -e "\n\nInstalling Node, NPM."
-# curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-# sudo apt-get install -y nodejs
-# yes | npm install -g npm@latest
-# # Clear the npm cache to use updated npm version
-# yes | npm cache clean --force
+# Install Node
+echo -e "\n\nInstalling Node, NPM."
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get install -y nodejs
+yes | npm install -g npm@latest
+# Clear the npm cache to use updated npm version
+yes | npm cache clean --force
 
-# # Install Node packages
-# echo -e "\n\nInstalling Node packages: http-server, eslint, sass, nodemon"
-# yes | npm install -g http-server eslint sass nodemon
+# Install Node packages
+echo -e "\n\nInstalling Node packages: http-server, eslint, sass, nodemon"
+yes | npm install -g http-server eslint sass nodemon
 
-# echo -e "\n\nAll packages installed."
+echo -e "\n\nAll packages installed."
 
