@@ -54,9 +54,10 @@ echo
 echo 'You have chosen to continue. Get ready for awesome.'
 echo -e "\n\n"
 
-
-if [ "$1" == "--auto-ssh-keys" ]; then
-    echo "'auto-ssh-keys' option provided. SSH keys will be pulled from github/jessereitz every two hours."
+echo "Would you like to enable auto-ssh-keys? This will automatically pull SSH keys from github/jessereitz every two hours."
+read -p "Enable auto-ssh-keys? [y|n]: " -n 1 -r
+if [[ $REPLY =~ ^[Yy] ]]; then
+    echo "'auto-ssh-keys' option enabled. SSH keys will be pulled from github/jessereitz every two hours."
     cur_date=`date --iso-8601=ns`
     mkdir -p /home/jessereitz/scripts/.bak
     echo "Copying current crontab to '/home/jessereitz/scripts/.bak' if you need it in the future."
